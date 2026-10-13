@@ -385,13 +385,25 @@ select, input[type="date"], input[type="time"] {
                 </div>
             </div>
 
-            <p id="complimentOpmerking" style="display: none;">
-  Hallo, wil je nog meer veren in je kont?
+           <p>Complimentjes 💐</p>
+
+<div class="counter">
+  <button onclick="veranderAantal('complimentjes', -1)">−</button>
+  <span id="complimentjes">0</span>
+  <button onclick="veranderAantal('complimentjes', 1)">+</button>
+</div>
+
+<p id="complimentOpmerking" style="display: none; color: #d63384; font-weight: bold;">
+  Halloo, hou wordt? 😉
 </p>
 
-
-
-
+<script>
+  function updateComplimentOpmerking() {
+    const aantal = parseInt(document.getElementById("complimentjes").textContent);
+    document.getElementById("complimentOpmerking").style.display =
+      aantal > 3 ? "block" : "none";
+  }
+</script>
             
             <!-- NIEUW: MELDING BIJ 3 OF MEER KNUFFELS -->
             <div class="message-box hug-message" id="hugMessage"
@@ -581,11 +593,6 @@ select, input[type="date"], input[type="time"] {
             kissingOption.style.display = "none";
             kissingCheckbox.checked = false;
         }
-
-        const complimentOpmerking = document.getElementById("complimentOpmerking");
-
-complimentOpmerking.style.display =
-  aantalComplimentjes > 4 ? "block" : "none";
 
         // Alle drie de extra's moeten exact 5 zijn
         const allMaxedOut =
