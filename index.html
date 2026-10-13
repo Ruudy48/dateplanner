@@ -275,7 +275,7 @@ select, input[type="date"], input[type="time"] {
     <!-- STAP 1: UITNODIGING -->
     <section class="step active" id="step1">
         <div class="heart">💌</div>
-        <h1>Rixt, wil je een 3e date met mij?</h1>
+        <h1> Zin in een 3e date met mij?</h1>
       
         <div class="yes-no" id="buttonArea">
             <button class="primary" onclick="showStep(2)">
@@ -283,7 +283,7 @@ select, input[type="date"], input[type="time"] {
             </button>
 
             <button id="noButton" type="button">
-                Nee 🙈
+                Nee bedankt!
             </button>
         </div>
 
@@ -302,13 +302,12 @@ select, input[type="date"], input[type="time"] {
             <select id="activity">
                 <option value="">Maak een keuze...</option>
                 <option>Uit eten 🍝</option>
-                <option>Drankje doen 🍹</option>
-                <option>Wandelen 🌳</option>
+                <option>Drankje doen kattencafé🍹</option>
+                <option>Wandelen en picknick Kiekkaaste🌳</option>
                 <option>Bioscoop 🎬</option>
-                <option>Bowlen 🎳</option>
-                <option>Koffie drinken ☕</option>
-                <option>Een verrassing 🎁</option>
-                <option>Jouw eigen idee 💡</option>
+                <option>Glow in the dark midgetgolfen🏌️‍♀️ </option>
+        
+                
             </select>
         </div>
 
@@ -323,7 +322,7 @@ select, input[type="date"], input[type="time"] {
     <section class="step" id="step3">
         <div class="heart">📅</div>
         <h1>Wanneer gaan we?</h1>
-        <p>Kies een datum en tijd die jou uitkomen.</p>
+        <p>Kies een datum en tijd die jou uitkomt</p>
 
         <div class="field">
             <label for="date">Datum</label>
@@ -345,8 +344,8 @@ select, input[type="date"], input[type="time"] {
     <!-- STAP 4: EXTRA'S -->
     <section class="step" id="step4">
         <div class="heart">😘</div>
-        <h1>Optioneel bij te boeken</h1>
-        <p>op basis van beschikbaarheid 😉</p>
+        <h1>Aanvullend bij te boeken</h1>
+        <p>op basis van beschikbaarheid </p>
 
         <div class="extras">
 
@@ -386,7 +385,7 @@ select, input[type="date"], input[type="time"] {
                 </div>
             </div>
 
-            <!-- NIEUW: MELDING BIJ 4 OF MEER KNUFFELS -->
+            <!-- NIEUW: MELDING BIJ 3 OF MEER KNUFFELS -->
             <div class="message-box hug-message" id="hugMessage"
                  aria-live="polite">
                 Zozo, jij bent wat van plan!
@@ -394,14 +393,14 @@ select, input[type="date"], input[type="time"] {
 
             <!-- BESTAANDE OPTIE VOOR ZOENEN -->
             <div class="kissing-option" id="kissingOption">
-                <strong>Wil je kusjes vervangen voor zoenen? </strong>
+                <strong>Wil je kusjes vervangen voor een zoen? </strong>
                 <label>
                     <input type="checkbox" id="kissingCheckbox">
                     Ja, zoenen!
                 </label>
             </div>
 
-            <!-- NIEUW: MELDING ALS ALLES OP 10 STAAT -->
+            <!-- NIEUW: MELDING ALS ALLES OP 5 STAAT -->
             <div class="message-box hotel-message" id="hotelMessage"
                  aria-live="polite">
                 🏨 Kunnen we niet beter een hotelkamer boeken? 😏
@@ -423,7 +422,7 @@ select, input[type="date"], input[type="time"] {
     <!-- STAP 5: BEVESTIGING -->
     <section class="step" id="step5">
         <div class="heart">💖</div>
-        <h1>Onze date is bijna geregeld!</h1>
+        <h1>Yes, onze date is bijna geregeld!</h1>
 
         <div class="summary" id="summary"></div>
 
@@ -558,9 +557,9 @@ select, input[type="date"], input[type="time"] {
 
     // NIEUW: ALLE AUTOMATISCHE MELDINGEN BIJWERKEN
     function updateMessages() {
-        // Vanaf 4 knuffels
+        // Vanaf 3 knuffels
         document.getElementById("hugMessage").style.display =
-            counts.hug > 3 ? "block" : "none";
+            counts.hug >2 ? "block" : "none";
 
         // Vanaf 4 kusjes: optie voor zoenen
         const kissingOption =
