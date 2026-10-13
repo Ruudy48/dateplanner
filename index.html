@@ -386,6 +386,14 @@ select, input[type="date"], input[type="time"] {
                 </div>
             </div>
 
+            <p id="complimentOpmerking" style="display: none;">
+  Hallo, wil je nog meer veren in je kont?
+</p>
+
+
+
+
+            
             <!-- NIEUW: MELDING BIJ 3 OF MEER KNUFFELS -->
             <div class="message-box hug-message" id="hugMessage"
                  aria-live="polite">
@@ -574,6 +582,11 @@ select, input[type="date"], input[type="time"] {
             kissingOption.style.display = "none";
             kissingCheckbox.checked = false;
         }
+
+        const complimentOpmerking = document.getElementById("complimentOpmerking");
+
+complimentOpmerking.style.display =
+  aantalComplimentjes > 4 ? "block" : "none";
 
         // Alle drie de extra's moeten exact 5 zijn
         const allMaxedOut =
