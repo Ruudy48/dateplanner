@@ -1174,7 +1174,7 @@ function changeCount(
         Math.max(
             0,
             Math.min(
-                10,
+                5,
                 counts[type] + amount
             )
         );
@@ -1213,7 +1213,7 @@ function changeCount(
             type + "Plus"
         )
         .disabled =
-        counts[type] === 10;
+        counts[type] === 5;
 
 
     updateMessages();
