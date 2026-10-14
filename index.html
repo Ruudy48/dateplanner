@@ -1,12 +1,13 @@
-
 <!DOCTYPE html>
 <html lang="nl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Een date met mij?</title>
+
+<title>Wil je een 3e date met mij?</title>
 
 <style>
+
 * {
     box-sizing: border-box;
 }
@@ -48,47 +49,9 @@ p {
     margin-bottom: 12px;
 }
 
-button, select, input {
-    font: inherit;
-}
-
-button {
-    border: none;
-    border-radius: 12px;
-    padding: 13px 20px;
-    cursor: pointer;
-}
-
-.primary {
-    background: #e75480;
-    color: white;
-    font-weight: bold;
-}
-
-.primary:hover {
-    background: #d83d6c;
-}
-
-.secondary {
-    background: #f1f1f1;
-    color: #444;
-}
-
-.yes-no {
-    display: flex;
-    justify-content: center;
-    gap: 18px;
-    margin-top: 28px;
-    min-height: 52px;
-    position: relative;
-}
-
-#noButton {
-    background: #ddd;
-    color: #555;
-    position: relative;
-    z-index: 2;
-}
+/* =========================
+   STAPPEN
+========================= */
 
 .step {
     display: none;
@@ -97,6 +60,60 @@ button {
 .step.active {
     display: block;
 }
+
+/* =========================
+   JA / NEE
+========================= */
+
+.yes-no {
+    position: relative;
+    height: 100px;
+    margin-top: 25px;
+}
+
+.ja-knop {
+    background: #591515;
+    color: white;
+    padding: 13px 25px;
+    border: none;
+    border-radius: 12px;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.ja-knop:hover {
+    background: #591515;
+}
+
+.nee-knop {
+    position: fixed;
+
+    background: #591515;
+    color: white;
+
+    padding: 13px 25px;
+
+    border: none;
+    border-radius: 12px;
+
+    font-size: 17px;
+
+    cursor: default;
+
+    z-index: 9999;
+
+    user-select: none;
+    -webkit-user-select: none;
+
+    transition:
+        left 0.35s ease,
+        top 0.35s ease;
+}
+
+/* =========================
+   FORMULIER
+========================= */
 
 .field {
     text-align: left;
@@ -109,13 +126,72 @@ button {
     margin-bottom: 9px;
 }
 
-select, input[type="date"], input[type="time"] {
+select,
+input[type="date"],
+input[type="time"] {
     width: 100%;
     padding: 13px;
+
     border: 1px solid #ddd;
     border-radius: 10px;
+
     background: white;
+
+    font: inherit;
 }
+
+/* =========================
+   KNOPPEN
+========================= */
+
+button {
+    font: inherit;
+}
+
+.primary {
+    background: #e75480;
+    color: white;
+    font-weight: bold;
+
+    border: none;
+    border-radius: 12px;
+
+    padding: 13px 20px;
+
+    cursor: pointer;
+}
+
+.primary:hover {
+    background: #d83d6c;
+}
+
+.secondary {
+    background: #f1f1f1;
+    color: #444;
+
+    border: none;
+    border-radius: 12px;
+
+    padding: 13px 20px;
+
+    cursor: pointer;
+}
+
+.actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+
+    margin-top: 25px;
+}
+
+.actions button {
+    flex: 1;
+}
+
+/* =========================
+   EXTRA'S
+========================= */
 
 .extras {
     margin: 20px 0;
@@ -125,9 +201,13 @@ select, input[type="date"], input[type="time"] {
     display: flex;
     align-items: center;
     justify-content: space-between;
+
     gap: 10px;
+
     padding: 14px 0;
+
     border-bottom: 1px solid #eee;
+
     text-align: left;
 }
 
@@ -144,11 +224,19 @@ select, input[type="date"], input[type="time"] {
 .counter button {
     width: 38px;
     height: 38px;
+
     padding: 0;
+
     font-size: 22px;
+    font-weight: bold;
+
+    border: none;
+    border-radius: 10px;
+
     background: #ffe1e8;
     color: #d83d6c;
-    font-weight: bold;
+
+    cursor: pointer;
 }
 
 .counter button:disabled {
@@ -157,20 +245,38 @@ select, input[type="date"], input[type="time"] {
 }
 
 .count {
-    min-width: 16px;
+    min-width: 20px;
+
     text-align: center;
+
     font-weight: bold;
+    font-size: 18px;
 }
 
-/* EXTRA MELDINGEN */
+/* =========================
+   OPMERKINGEN
+========================= */
+
 .message-box {
     display: none;
+
     padding: 14px;
+
     margin-top: 15px;
+
     border-radius: 12px;
+
     font-weight: bold;
+
     line-height: 1.5;
+
     animation: appear 0.3s ease;
+}
+
+.compliment-message {
+    background: #fff0f5;
+    color: #d63384;
+    border: 1px solid #f5b5cc;
 }
 
 .hug-message {
@@ -183,77 +289,91 @@ select, input[type="date"], input[type="time"] {
     background: #ffe1e8;
     color: #a51e4d;
     border: 1px solid #f2a6bc;
+
     font-size: 17px;
 }
 
-@keyframes appear {
-    from {
-        opacity: 0;
-        transform: translateY(8px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
+/* =========================
+   ZOENEN OPTIE
+========================= */
 
 .kissing-option {
     display: none;
+
     flex-direction: column;
     align-items: flex-start;
+
     gap: 10px;
+
     background: #fff0f4;
+
     border: 1px solid #ffc5d5;
+
     border-radius: 12px;
+
     padding: 15px;
+
     margin-top: 15px;
+
     text-align: left;
 }
 
 .kissing-option label {
     display: flex;
+
     align-items: center;
+
     gap: 9px;
+
     cursor: pointer;
+
     font-weight: bold;
 }
 
 .kissing-option input {
     width: 19px;
     height: 19px;
+
     accent-color: #e75480;
 }
 
+/* =========================
+   BEVESTIGING
+========================= */
+
 .summary {
     background: #fff4f6;
+
     padding: 16px;
+
     border-radius: 12px;
+
     text-align: left;
+
     margin: 20px 0;
+
     line-height: 1.8;
+
     overflow-wrap: anywhere;
-}
-
-.actions {
-    display: flex;
-    justify-content: space-between;
-    gap: 10px;
-    margin-top: 25px;
-}
-
-.actions button {
-    flex: 1;
 }
 
 .whatsapp {
     display: block;
+
     width: 100%;
+
     background: #25D366;
+
     color: white;
+
     font-weight: bold;
+
     margin-top: 15px;
+
     text-decoration: none;
+
     padding: 15px;
+
     border-radius: 12px;
 }
 
@@ -264,448 +384,1226 @@ select, input[type="date"], input[type="time"] {
 .note {
     font-size: 12px;
     color: #777;
+
     margin-top: 15px;
 }
+
+/* =========================
+   ANIMATIE
+========================= */
+
+@keyframes appear {
+
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
 </style>
 </head>
 
+
 <body>
+
 <div class="card">
 
-    <!-- STAP 1: UITNODIGING -->
-    <section class="step active" id="step1">
-        <div class="heart">💌</div>
-        <h1> Zou je een 3e date met mij willen?</h1>
-      
-        <div class="yes-no" id="buttonArea">
-            <button class="primary" onclick="showStep(2)">
-                Ja! ❤️
-            </button>
+<!-- =====================================
+     STAP 1
+===================================== -->
 
-            <button id="noButton" type="button">
-                Nee bedankt!
-            </button>
-        </div>
+<section class="step active" id="step1">
 
+    <div class="heart">
+        💌
+    </div>
 
-    </section>
+    <h1>
+        Lieve Rixt,
+    </h1>
+	<h2> 
+		Wil je een 3e date met mij?
+    </h>
 
+    <div class="yes-no">
 
-    <!-- STAP 2: ACTIVITEIT -->
-    <section class="step" id="step2">
-        <div class="heart">🥰</div>
-        <h1>Yes, date it is!</h1>
-        <p>Wat zullen we doen? Jij kiest.</p>
-
-        <div class="field">
-            <label for="activity">Kies een activiteit</label>
-            <select id="activity">
-                <option value="">Maak een keuze...</option>
-                <option>Uit eten 🍝</option>
-                <option>Drankje doen kattencafé🍹</option>
-                <option>Wandelen en picknick Kiekkaaste🌳</option>
-                <option>Bioscoop 🎬</option>
-                <option>Glow in the dark midgetgolfen🏌️‍♀️ </option>
-
-                
-            </select>
-        </div>
-
-        <div class="actions">
-            <button class="secondary" onclick="showStep(1)">Terug</button>
-            <button class="primary" onclick="nextToDate()">Verder →</button>
-        </div>
-    </section>
-
-
-    <!-- STAP 3: DATUM EN TIJD -->
-    <section class="step" id="step3">
-        <div class="heart">📅</div>
-        <h1>Wanneer gaan we?</h1>
-        <p>Kies een datum en tijd die jou uitkomt</p>
-
-        <div class="field">
-            <label for="date">Datum</label>
-            <input type="date" id="date">
-        </div>
-
-        <div class="field">
-            <label for="time">Tijd</label>
-            <input type="time" id="time">
-        </div>
-
-        <div class="actions">
-            <button class="secondary" onclick="showStep(2)">Terug</button>
-            <button class="primary" onclick="nextToExtras()">Verder →</button>
-        </div>
-    </section>
-
-
-    <!-- STAP 4: EXTRA'S -->
-    <section class="step" id="step4">
-        <div class="heart">😘</div>
-        <h1>Optioneel bij te boeken</h1>
-        <p><i></i>op basis van beschikbaarheid</i></p>
-
-        <div class="extras">
-
-            <!-- COMPLIMENTJES -->
-            <div class="extra-row">
-                <span class="extra-name">💬 Een complimentje</span>
-                <div class="counter">
-                    <button onclick="changeCount('compliment', -1)"
-                            id="complimentMinus">−</button>
-                    <span class="count" id="complimentCount">0</span>
-                    <button onclick="changeCount('compliment', 1)"
-                            id="complimentPlus">+</button>
-                </div>
-            </div>
-
-            <!-- KNUFFELS -->
-            <div class="extra-row">
-                <span class="extra-name">🫂 Een knuffel</span>
-                <div class="counter">
-                    <button onclick="changeCount('hug', -1)"
-                            id="hugMinus">−</button>
-                    <span class="count" id="hugCount">0</span>
-                    <button onclick="changeCount('hug', 1)"
-                            id="hugPlus">+</button>
-                </div>
-            </div>
-
-            <!-- KUSJES -->
-            <div class="extra-row">
-                <span class="extra-name">💋 Een kusje</span>
-                <div class="counter">
-                    <button onclick="changeCount('kiss', -1)"
-                            id="kissMinus">−</button>
-                    <span class="count" id="kissCount">0</span>
-                    <button onclick="changeCount('kiss', 1)"
-                            id="kissPlus">+</button>
-                </div>
-            </div>
-
-            
-            <!-- NIEUW: MELDING BIJ 3 OF MEER KNUFFELS -->
-            <div class="message-box hug-message" id="hugMessage"
-                 aria-live="polite">
-                Zozo, jij bent wat van plan!
-            </div>
-
-            <!-- BESTAANDE OPTIE VOOR ZOENEN -->
-            <div class="kissing-option" id="kissingOption">
-                <strong>Wil je kusjes vervangen voor een zoen? </strong>
-                <label>
-                    <input type="checkbox" id="kissingCheckbox">
-                    Ja, zoenen!
-                </label>
-            </div>
-
-            <!-- NIEUW: MELDING ALS ALLES OP 5 STAAT -->
-            <div class="message-box hotel-message" id="hotelMessage"
-                 aria-live="polite">
-                🏨 Kunnen we niet beter een hotelkamer boeken? 😏
-            </div>
-
-        </div>
-
-        <p class="note">Per extra kun je maximaal 5 kiezen.</p>
-
-        <div class="actions">
-            <button class="secondary" onclick="showStep(3)">Terug</button>
-            <button class="primary" onclick="showConfirmation()">
-                Naar bevestiging ❤️
-            </button>
-        </div>
-    </section>
-
-
-    <!-- STAP 5: BEVESTIGING -->
-    <section class="step" id="step5">
-        <div class="heart">💖</div>
-        <h1>Yes, onze date is bijna geregeld!</h1>
-
-        <div class="summary" id="summary"></div>
-
-        <a id="whatsappLink"
-           class="whatsapp"
-           href="#"
-           target="_blank"
-           rel="noopener noreferrer">
-            Bevestig via WhatsApp
-        </a>
-
-        <button class="secondary"
-                style="width:100%; margin-top:12px;"
-                onclick="showStep(4)">
-            Nog iets aanpassen
+        <button
+            class="ja-knop"
+            onclick="showStep(2)">
+            Ja ❤️
         </button>
 
-        <p class="note">
-            WhatsApp opent met je ingevulde bericht.
-            Verstuur het bericht daar om de date te bevestigen.
-        </p>
-    </section>
+        <button
+            id="nee"
+            class="nee-knop"
+            type="button">
+            Nee 🙈
+        </button>
+
+    </div>
+
+
+</section>
+
+
+<!-- =====================================
+     STAP 2
+===================================== -->
+
+<section class="step" id="step2">
+
+    <div class="heart">
+        🥰
+    </div>
+
+    <h1>
+        Leuk! Een date it is!
+    </h1>
+
+    <p>
+        Wat lijkt je leuk om samen te doen?
+    </p>
+
+
+    <div class="field">
+
+        <label for="activity">
+            Kies een activiteit
+        </label>
+
+        <select id="activity">
+
+            <option value="">
+                Maak een keuze...
+            </option>
+
+            <option>
+                Uit eten 🍝
+            </option>
+
+            <option>
+                Drankje doen bij Kattencafé🍹
+            </option>
+
+            <option>
+                Wandelen & picknick Kiekkaaste 🌳
+            </option>
+
+            <option>
+                Bioscoop 🎬
+            </option>
+
+            <option>
+                Glow in the Dark Midgetgolf 🎳
+            </option>
+
+
+        </select>
+
+    </div>
+
+
+    <div class="actions">
+
+        <button
+            class="secondary"
+            onclick="showStep(1)">
+            Terug
+        </button>
+
+        <button
+            class="primary"
+            onclick="nextToDate()">
+            Verder →
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================
+     STAP 3
+===================================== -->
+
+<section class="step" id="step3">
+
+    <div class="heart">
+        📅
+    </div>
+
+    <h1>
+        Wanneer gaan we?
+    </h1>
+
+    <p>
+        Kies een datum en tijd die jou uitkomen.
+    </p>
+
+
+    <div class="field">
+
+        <label for="date">
+            Datum
+        </label>
+
+        <input
+            type="date"
+            id="date">
+
+    </div>
+
+
+    <div class="field">
+
+        <label for="time">
+            Tijd
+        </label>
+
+        <input
+            type="time"
+            id="time">
+
+    </div>
+
+
+    <div class="actions">
+
+        <button
+            class="secondary"
+            onclick="showStep(2)">
+            Terug
+        </button>
+
+        <button
+            class="primary"
+            onclick="nextToExtras()">
+            Verder →
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================
+     STAP 4
+===================================== -->
+
+<section class="step" id="step4">
+
+    <div class="heart">
+        😘
+    </div>
+
+    <h1>
+        Optioneel bij te boeken..
+    </h1>
+
+    <p>
+        op basis van beschikbaarheid
+    </p>
+
+
+    <div class="extras">
+
+
+        <!-- COMPLIMENTJES -->
+
+        <div class="extra-row">
+
+            <span class="extra-name">
+                💬 Een complimentje
+            </span>
+
+            <div class="counter">
+
+                <button
+                    onclick="changeCount('compliment', -1)"
+                    id="complimentMinus">
+                    −
+                </button>
+
+                <span
+                    class="count"
+                    id="complimentCount">
+                    0
+                </span>
+
+                <button
+                    onclick="changeCount('compliment', 1)"
+                    id="complimentPlus">
+                    +
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- OPMERKING BIJ MEER DAN 3 COMPLIMENTEN -->
+
+        <div
+            class="message-box compliment-message"
+            id="complimentMessage">
+
+            Halloo, toe eem!😂
+
+        </div>
+
+
+        <!-- KNUFFELS -->
+
+        <div class="extra-row">
+
+            <span class="extra-name">
+                🫂 Een knuffel
+            </span>
+
+            <div class="counter">
+
+                <button
+                    onclick="changeCount('hug', -1)"
+                    id="hugMinus">
+                    −
+                </button>
+
+                <span
+                    class="count"
+                    id="hugCount">
+                    0
+                </span>
+
+                <button
+                    onclick="changeCount('hug', 1)"
+                    id="hugPlus">
+                    +
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- OPMERKING BIJ MEER DAN 3 KNUFFELS -->
+
+        <div
+            class="message-box hug-message"
+            id="hugMessage">
+
+            Zozo, jij bent wat van plan!
+
+        </div>
+
+
+        <!-- KUSJES -->
+
+        <div class="extra-row">
+
+            <span class="extra-name">
+                💋 Een kusje
+            </span>
+
+            <div class="counter">
+
+                <button
+                    onclick="changeCount('kiss', -1)"
+                    id="kissMinus">
+                    −
+                </button>
+
+                <span
+                    class="count"
+                    id="kissCount">
+                    0
+                </span>
+
+                <button
+                    onclick="changeCount('kiss', 1)"
+                    id="kissPlus">
+                    +
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- ZOENEN OPTIE -->
+
+        <div
+            class="kissing-option"
+            id="kissingOption">
+
+            <strong>
+                Wil je de kusjes vervangen voor een zoen?
+            </strong>
+
+            <label>
+
+                <input
+                    type="checkbox"
+                    id="kissingCheckbox">
+
+                Ja, zoenen! 😘
+
+            </label>
+
+        </div>
+
+
+        <!-- HOTELMELDING -->
+
+        <div
+            class="message-box hotel-message"
+            id="hotelMessage">
+
+            🏨 Volgens mij kunnen we beter een hotelkamer boeken😏
+
+        </div>
+
+    </div>
+
+
+    <p class="note">
+        Per extra kun je maximaal 5 kiezen.
+    </p>
+
+
+    <div class="actions">
+
+        <button
+            class="secondary"
+            onclick="showStep(3)">
+            Terug
+        </button>
+
+        <button
+            class="primary"
+            onclick="showConfirmation()">
+            Naar bevestiging ❤️
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================
+     STAP 5
+===================================== -->
+
+<section class="step" id="step5">
+
+    <div class="heart">
+        💖
+    </div>
+
+    <h1>
+        Onze date is bijna geregeld!
+    </h1>
+
+    <p>
+        Details van deze date worden persoonlijk met je afgestemd.
+    </p>
+
+
+    <div
+        class="summary"
+        id="summary">
+    </div>
+
+
+    <a
+        id="whatsappLink"
+        class="whatsapp"
+        href="#"
+        target="_blank"
+        rel="noopener noreferrer">
+
+        Verstuur bevestiging
+
+    </a>
+
+
+    <button
+        class="secondary"
+        style="width:100%; margin-top:12px;"
+        onclick="showStep(4)">
+
+        Toch nog iets aanpassen
+
+    </button>
+
+
+</section>
 
 </div>
 
 
 <script>
-    // VUL HIER JE EIGEN WHATSAPP-NUMMER IN.
-    // Inclusief landcode, zonder +, spaties of streepjes.
-    const mijnWhatsAppNummer = "31611058916";
+
+/* =====================================
+   WHATSAPP NUMMER
+===================================== */
+
+/*
+   Vervang dit door jouw eigen nummer.
+
+   Voor Nederland bijvoorbeeld:
+
+   31612345678
+
+   Dus:
+   +31 6 12345678
+   wordt:
+   31612345678
+*/
+
+const mijnWhatsAppNummer = "31611058916"
 
 
-    // STAPPEN WISSELEN
-    function showStep(stepNumber) {
-        document.querySelectorAll(".step").forEach(function(step) {
+/* =====================================
+   STAPPEN
+===================================== */
+
+function showStep(stepNumber) {
+
+    document
+        .querySelectorAll(".step")
+        .forEach(function(step) {
+
             step.classList.remove("active");
+
         });
 
-        document.getElementById("step" + stepNumber)
-            .classList.add("active");
-    }
+    document
+        .getElementById("step" + stepNumber)
+        .classList.add("active");
+}
 
 
-    // DE KNOP NEE SPRINGT WEG OP COMPUTER EN TOUCHSCREEN
-    const noButton = document.getElementById("noButton");
+/* =====================================
+   ZWEVENDE NEE-KNOP
+===================================== */
 
-    function moveNoButton() {
-        const margin = 20;
-        const maxX = Math.max(
-            margin,
-            window.innerWidth - noButton.offsetWidth - margin
-        );
-        const maxY = Math.max(
-            margin,
-            window.innerHeight - noButton.offsetHeight - margin
-        );
+const neeKnop =
+    document.getElementById("nee");
 
-        noButton.style.position = "fixed";
-        noButton.style.left =
-            margin + Math.random() * (maxX - margin) + "px";
-        noButton.style.top =
-            margin + Math.random() * (maxY - margin) + "px";
-    }
 
-    noButton.addEventListener("pointerenter", function(event) {
+function nieuwePositie() {
+
+    const marge = 20;
+
+    const maxX =
+        window.innerWidth -
+        neeKnop.offsetWidth -
+        marge;
+
+    const maxY =
+        window.innerHeight -
+        neeKnop.offsetHeight -
+        marge;
+
+
+    const x =
+        marge +
+        Math.random() *
+        Math.max(1, maxX - marge);
+
+
+    const y =
+        marge +
+        Math.random() *
+        Math.max(1, maxY - marge);
+
+
+    neeKnop.style.left = x + "px";
+
+    neeKnop.style.top = y + "px";
+}
+
+
+/*
+   Desktop:
+   zodra de muis de knop raakt,
+   springt hij weg.
+*/
+
+neeKnop.addEventListener(
+    "pointerenter",
+    function(event) {
+
         if (event.pointerType === "mouse") {
-            moveNoButton();
-        }
-    });
 
-    noButton.addEventListener("pointerdown", function(event) {
+            nieuwePositie();
+
+        }
+
+    }
+);
+
+
+/*
+   Telefoon/tablet:
+   zodra iemand probeert te tikken,
+   springt hij weg.
+*/
+
+neeKnop.addEventListener(
+    "pointerdown",
+    function(event) {
+
         event.preventDefault();
-        moveNoButton();
-    });
 
-    noButton.addEventListener("click", function(event) {
+        nieuwePositie();
+
+    }
+);
+
+
+/*
+   Extra beveiliging:
+   klikken heeft geen effect.
+*/
+
+neeKnop.addEventListener(
+    "click",
+    function(event) {
+
         event.preventDefault();
-        moveNoButton();
-    });
 
+        event.stopPropagation();
 
-    // DATUM MINIMAAL OP VANDAAG
-    const dateInput = document.getElementById("date");
-    const today = new Date();
+        nieuwePositie();
 
-    const localToday = [
-        today.getFullYear(),
-        String(today.getMonth() + 1).padStart(2, "0"),
-        String(today.getDate()).padStart(2, "0")
-    ].join("-");
-
-    dateInput.min = localToday;
-
-
-    // ACTIVITEIT CONTROLEREN
-    function nextToDate() {
-        if (!document.getElementById("activity").value) {
-            alert("Kies eerst een activiteit!");
-            return;
-        }
-
-        showStep(3);
     }
+);
 
 
-    // DATUM EN TIJD CONTROLEREN
-    function nextToExtras() {
-        const date = dateInput.value;
-        const time = document.getElementById("time").value;
+/*
+   Automatisch rondzweven.
+*/
 
-        if (!date || !time) {
-            alert("Kies eerst een datum en tijd!");
-            return;
-        }
+function automatischZweven() {
 
-        if (date < localToday) {
-            alert("Kies een datum vanaf vandaag.");
-            return;
-        }
+    nieuwePositie();
 
-        showStep(4);
-    }
+    const volgendeBeweging =
+        1500 +
+        Math.random() * 2000;
 
-
-    // EXTRA'S TELLEN: VAN 0 TOT EN MET 5
-    const counts = {
-        compliment: 0,
-        hug: 0,
-        kiss: 0
-    };
+    setTimeout(
+        automatischZweven,
+        volgendeBeweging
+    );
+}
 
 
-    // NIEUW: ALLE AUTOMATISCHE MELDINGEN BIJWERKEN
-    function updateMessages() {
-        // Vanaf 3 knuffels
-        document.getElementById("hugMessage").style.display =
-            counts.hug >2 ? "block" : "none";
+/*
+   Start het automatisch zweven
+   nadat de pagina geladen is.
+*/
 
-        // Vanaf 4 kusjes: optie voor zoenen
-        const kissingOption =
-            document.getElementById("kissingOption");
-        const kissingCheckbox =
-            document.getElementById("kissingCheckbox");
-
-        if (counts.kiss > 3) {
-            kissingOption.style.display = "flex";
-        } else {
-            kissingOption.style.display = "none";
-            kissingCheckbox.checked = false;
-        }
-
-        // Alle drie de extra's moeten exact 5 zijn
-        const allMaxedOut =
-            counts.compliment === 5 &&
-            counts.hug === 5 &&
-            counts.kiss === 5;
-
-        document.getElementById("hotelMessage").style.display =
-            allMaxedOut ? "block" : "none";
-    }
+setTimeout(
+    automatischZweven,
+    1200
+);
 
 
-    function changeCount(type, amount) {
-        counts[type] = Math.max(
-            0,
-            Math.min(5, counts[type] + amount)
+/*
+   Houd de knop binnen beeld
+   bij draaien van telefoon/scherm.
+*/
+
+window.addEventListener(
+    "resize",
+    function() {
+
+        const maxX =
+            window.innerWidth -
+            neeKnop.offsetWidth -
+            20;
+
+        const maxY =
+            window.innerHeight -
+            neeKnop.offsetHeight -
+            20;
+
+
+        let x =
+            parseFloat(neeKnop.style.left) || 20;
+
+        let y =
+            parseFloat(neeKnop.style.top) || 20;
+
+
+        x = Math.min(
+            Math.max(20, x),
+            maxX
         );
 
-        document.getElementById(type + "Count").textContent =
-            counts[type];
+        y = Math.min(
+            Math.max(20, y),
+            maxY
+        );
 
-        document.getElementById(type + "Minus").disabled =
-            counts[type] === 0;
 
-        document.getElementById(type + "Plus").disabled =
-            counts[type] === 5;
+        neeKnop.style.left =
+            x + "px";
 
-        updateMessages();
+        neeKnop.style.top =
+            y + "px";
+
+    }
+);
+
+
+/* =====================================
+   DATUM
+===================================== */
+
+const dateInput =
+    document.getElementById("date");
+
+const vandaag =
+    new Date();
+
+
+const lokaleDatum = [
+
+    vandaag.getFullYear(),
+
+    String(
+        vandaag.getMonth() + 1
+    ).padStart(2, "0"),
+
+    String(
+        vandaag.getDate()
+    ).padStart(2, "0")
+
+].join("-");
+
+
+dateInput.min =
+    lokaleDatum;
+
+
+/* =====================================
+   ACTIVITEIT CONTROLEREN
+===================================== */
+
+function nextToDate() {
+
+    const activity =
+        document.getElementById("activity").value;
+
+
+    if (!activity) {
+
+        alert(
+            "Kies eerst een activiteit!"
+        );
+
+        return;
     }
 
 
-    // INITIËLE STATUS VAN DE MIN-KNOPPEN
-    ["compliment", "hug", "kiss"].forEach(function(type) {
-        document.getElementById(type + "Minus").disabled = true;
-    });
+    showStep(3);
+}
 
 
-    // DATUM WEERGEVEN ALS DD-MM-JJJJ
-    function formatDate(dateString) {
-        const parts = dateString.split("-");
-        return parts[2] + "-" + parts[1] + "-" + parts[0];
+/* =====================================
+   DATUM/TIJD CONTROLEREN
+===================================== */
+
+function nextToExtras() {
+
+    const date =
+        dateInput.value;
+
+    const time =
+        document.getElementById("time").value;
+
+
+    if (!date || !time) {
+
+        alert(
+            "Kies eerst een datum en tijd!"
+        );
+
+        return;
     }
 
 
-    // BEVESTIGING OPBOUWEN
-    function showConfirmation() {
-        const activity = document.getElementById("activity").value;
-        const date = dateInput.value;
-        const time = document.getElementById("time").value;
+    showStep(4);
+}
 
-        if (!activity || !date || !time) {
-            alert("Controleer je activiteit, datum en tijd.");
-            return;
+
+/* =====================================
+   EXTRA'S
+===================================== */
+
+const counts = {
+
+    compliment: 0,
+
+    hug: 0,
+
+    kiss: 0
+
+};
+
+
+/* =====================================
+   EXTRA'S BIJWERKEN
+===================================== */
+
+function changeCount(
+    type,
+    amount
+) {
+
+    counts[type] =
+        Math.max(
+            0,
+            Math.min(
+                10,
+                counts[type] + amount
+            )
+        );
+
+
+    /*
+       Teller aanpassen
+    */
+
+    document
+        .getElementById(
+            type + "Count"
+        )
+        .textContent =
+        counts[type];
+
+
+    /*
+       Min-knop
+    */
+
+    document
+        .getElementById(
+            type + "Minus"
+        )
+        .disabled =
+        counts[type] === 0;
+
+
+    /*
+       Plus-knop
+    */
+
+    document
+        .getElementById(
+            type + "Plus"
+        )
+        .disabled =
+        counts[type] === 10;
+
+
+    updateMessages();
+}
+
+
+/* =====================================
+   OPMERKINGEN
+===================================== */
+
+function updateMessages() {
+
+
+    /*
+       Meer dan 3 complimentjes
+    */
+
+    document
+        .getElementById(
+            "complimentMessage"
+        )
+        .style.display =
+        counts.compliment > 2
+            ? "block"
+            : "none";
+
+
+    /*
+       Meer dan 3 knuffels
+    */
+
+    document
+        .getElementById(
+            "hugMessage"
+        )
+        .style.display =
+        counts.hug > 3
+            ? "block"
+            : "none";
+
+
+    /*
+       Vanaf 4 kusjes:
+       optie voor zoenen.
+    */
+
+    const kissingOption =
+        document.getElementById(
+            "kissingOption"
+        );
+
+    const kissingCheckbox =
+        document.getElementById(
+            "kissingCheckbox"
+        );
+
+
+    if (counts.kiss >= 4) {
+
+        kissingOption.style.display =
+            "flex";
+
+    } else {
+
+        kissingOption.style.display =
+            "none";
+
+        kissingCheckbox.checked =
+            false;
+
+    }
+
+
+    /*
+       Als alles 10 is:
+       hotelmelding.
+    */
+
+    const allesTien =
+
+        counts.compliment === 10 &&
+
+        counts.hug === 10 &&
+
+        counts.kiss === 10;
+
+
+    document
+        .getElementById(
+            "hotelMessage"
+        )
+        .style.display =
+        allesTien
+            ? "block"
+            : "none";
+}
+
+
+/* =====================================
+   INITIËLE MIN-KNOPPEN
+===================================== */
+
+[
+    "compliment",
+    "hug",
+    "kiss"
+
+].forEach(function(type) {
+
+    document
+        .getElementById(
+            type + "Minus"
+        )
+        .disabled = true;
+
+});
+
+
+/* =====================================
+   DATUM FORMATTEREN
+===================================== */
+
+function formatDate(
+    dateString
+) {
+
+    const parts =
+        dateString.split("-");
+
+
+    return (
+
+        parts[2] +
+        "-" +
+        parts[1] +
+        "-" +
+        parts[0]
+
+    );
+}
+
+
+/* =====================================
+   WHATSAPP BEVESTIGING
+===================================== */
+
+function showConfirmation() {
+
+    const activity =
+        document.getElementById(
+            "activity"
+        ).value;
+
+
+    const date =
+        dateInput.value;
+
+
+    const time =
+        document.getElementById(
+            "time"
+        ).value;
+
+
+    if (
+        !activity ||
+        !date ||
+        !time
+    ) {
+
+        alert(
+            "Controleer je activiteit, datum en tijd."
+        );
+
+        return;
+    }
+
+
+    const extras = [];
+
+
+    /*
+       Complimentjes
+    */
+
+    if (
+        counts.compliment > 0
+    ) {
+
+        extras.push(
+
+            counts.compliment +
+            " complimentje(s)"
+
+        );
+
+    }
+
+
+    /*
+       Knuffels
+    */
+
+    if (
+        counts.hug > 0
+    ) {
+
+        extras.push(
+
+            counts.hug +
+            " knuffel(s)"
+
+        );
+
+    }
+
+
+    /*
+       Kusjes / zoenen
+    */
+
+    if (
+        counts.kiss > 0
+    ) {
+
+        const kissingSelected =
+            document
+                .getElementById(
+                    "kissingCheckbox"
+                )
+                .checked;
+
+
+        if (
+            counts.kiss >= 4 &&
+            kissingSelected
+        ) {
+
+            extras.push(
+
+                counts.kiss +
+                " keer zoenen 😘"
+
+            );
+
+        } else {
+
+            extras.push(
+
+                counts.kiss +
+                " kusje(s)"
+
+            );
+
         }
 
-        const extras = [];
+    }
 
-        if (counts.compliment > 0) {
-            extras.push(counts.compliment + " complimentje(s)");
-        }
 
-        if (counts.hug > 0) {
-            extras.push(counts.hug + " knuffel(s)");
-        }
-
-        if (counts.kiss > 0) {
-            const kissingSelected =
-                document.getElementById("kissingCheckbox").checked;
-
-            if (counts.kiss >= 4 && kissingSelected) {
-                extras.push(counts.kiss + " keer zoenen 😘");
-            } else {
-                extras.push(counts.kiss + " kusje(s)");
-            }
-        }
-
-        const extraText = extras.length > 0
+    const extraText =
+        extras.length > 0
             ? extras.join(", ")
             : "Geen extra's gekozen";
 
-        const hotelText =
-            counts.compliment === 5 &&
-            counts.hug === 5 &&
-            counts.kiss === 5
-                ? "\nPS: Kunnen we niet beter een hotelkamer boeken? 😏"
-                : "";
 
-        const bericht =
-            "Hoi! ❤️ Mijn datebevestiging:\n\n" +
-            "Activiteit: " + activity + "\n" +
-            "Datum: " + formatDate(date) + "\n" +
-            "Tijd: " + time + "\n" +
-            "Extra's: " + extraText + "\n\n" +
-            "Ik heb zin in onze date! 🥰" +
-            hotelText;
+    /*
+       Hoteltekst
+    */
 
-        // BEVESTIGING VEILIG OPBOUWEN
-        const summary = document.getElementById("summary");
-        summary.replaceChildren();
+    const hotelText =
 
-        [
-            ["Activiteit: ", activity],
-            ["Datum: ", formatDate(date)],
-            ["Tijd: ", time],
-            ["Extra's: ", extraText]
-        ].forEach(function(item) {
-            const line = document.createElement("div");
-            const label = document.createElement("strong");
+        counts.compliment === 10 &&
 
-            label.textContent = item[0];
-            line.appendChild(label);
-            line.appendChild(document.createTextNode(item[1]));
-            summary.appendChild(line);
-        });
+        counts.hug === 10 &&
 
-        if (hotelText) {
-            const hotelLine = document.createElement("div");
-            hotelLine.style.marginTop = "10px";
-            hotelLine.style.fontWeight = "bold";
-            hotelLine.textContent =
-                "🏨 Kunnen we niet beter een hotelkamer boeken? 😏";
-            summary.appendChild(hotelLine);
-        }
+        counts.kiss === 10
 
-        const whatsappUrl =
-            "https://wa.me/" + mijnWhatsAppNummer +
-            "?text=" + encodeURIComponent(bericht);
+        ?
 
-        document.getElementById("whatsappLink").href = whatsappUrl;
+        "\n\n🏨 Kunnen we niet beter " +
+        "een hotelkamer boeken? 😏"
 
-        showStep(5);
+        :
+
+        "";
+
+
+    /*
+       WhatsApp bericht
+    */
+
+    const bericht =
+
+        "Hoi! ❤️ Mijn datebevestiging:\n\n" +
+
+        "Activiteit: " +
+        activity +
+        "\n" +
+
+        "Datum: " +
+        formatDate(date) +
+        "\n" +
+
+        "Tijd: " +
+        time +
+        "\n" +
+
+        "Extra's: " +
+        extraText +
+
+        "\n\n" +
+
+        "Ik heb zin in onze date! 🥰" +
+
+        hotelText;
+
+
+    /*
+       Samenvatting op pagina
+    */
+
+    const summary =
+        document.getElementById(
+            "summary"
+        );
+
+
+    summary.innerHTML =
+
+        "<strong>Activiteit:</strong> " +
+        activity +
+
+        "<br>" +
+
+        "<strong>Datum:</strong> " +
+        formatDate(date) +
+
+        "<br>" +
+
+        "<strong>Tijd:</strong> " +
+        time +
+
+        "<br>" +
+
+        "<strong>Extra's:</strong> " +
+        extraText;
+
+
+    if (hotelText) {
+
+        summary.innerHTML +=
+
+            "<br><br><strong>" +
+
+            "🏨 Kunnen we niet beter " +
+            "een hotelkamer boeken? 😏" +
+
+            "</strong>";
+
     }
+
+
+    /*
+       WhatsApp link
+    */
+
+    const whatsappUrl =
+
+        "https://wa.me/" +
+
+        mijnWhatsAppNummer +
+
+        "?text=" +
+
+        encodeURIComponent(
+            bericht
+        );
+
+
+    document
+        .getElementById(
+            "whatsappLink"
+        )
+        .href =
+        whatsappUrl;
+
+
+    showStep(5);
+}
+
 </script>
 
 </body>
